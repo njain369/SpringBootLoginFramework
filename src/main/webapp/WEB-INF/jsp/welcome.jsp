@@ -7,6 +7,7 @@
 <title>SmartTimetable</title>
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/darkly/bootstrap.min.css">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">   
 <style>
   .container { margin: 150px auto; }
   </style>
@@ -17,7 +18,8 @@
 </div>
 </div>
   <div class="container">
-    <h1>Time Table On Bench! :) Go Excel your Day</h1>
+    <h1>Time Table On Bench! :) Go Excel your Day <button onclick="addrow()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+   </h1>
     <table class="table" id="myTable">
     <thead>
       <tr>
@@ -26,7 +28,7 @@
         <th data-card-footer>Email</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tb">
       <tr>
         <td>John</td>
         <td><a href="https://www.jqueryscript.net">https://www.jqueryscript.net</a></td>
@@ -42,9 +44,34 @@
         <td><a href="https://www.jqueryscript.net">https://www.jqueryscript.net</a></td>
         <td>july@example.com</td>
       </tr>
+      
     </tbody>
   </table>
   </div>
+<script>
+  var i=0;
+  
+  function addrow(){
+	  var tr=document.createElement("TR");
+	  tr.id="tr"+i+"";
+	  document.getElementById("tb").appendChild(tr);
+	   
+	   var td=document.createElement("TD");
+	   td.innerHTML="Created New Column";
+	   var td1=document.createElement("TD");
+	   td1.innerHTML="Good";
+	   var td2=document.createElement("TD");
+	   td2.innerHTML="It is Nice";
+
+	   document.getElementById("tr"+i+"").appendChild(td);
+	   document.getElementById("tr"+i+"").appendChild(td1);
+	   document.getElementById("tr"+i+"").appendChild(td2);
+	   
+	   i++;  
+	   
+  }
+  </script>
+  
 <script src="https://code.jquery.com/jquery-3.4.0.slim.min.js" integrity="sha384-7WBfQYubrFpye+dGHEeA3fHaTy/wpTFhxdjxqvK04e4orV3z+X4XC4qOX3qnkVC6" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
