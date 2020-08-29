@@ -19,17 +19,18 @@ public class UserService {
 		repository.save(uobj);
 	}
 	
-	public boolean verifyUser(String name,String password) {
+    
+	public int verifyUser(String name,String password) {
 		
 		List<User>ll=repository.findAll();		
 		for(User u:ll) {
 			if(u.getName().equals(name)) {
 				if(u.getPassword().equals(password)) {
-					return true;
+					return u.getId();
 					
 				}
 			}
 			}
-		return false;
+		return 0;
 	}
 }

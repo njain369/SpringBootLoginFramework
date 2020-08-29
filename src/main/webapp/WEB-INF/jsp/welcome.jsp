@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!doctype html>
 <html>
 <head>
@@ -10,6 +12,16 @@
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">   
 <style>
   .container { margin: 150px auto; }
+  #myInput {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 20%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+  
   </style>
 </head>
 
@@ -19,36 +31,48 @@
 </div>
   <div class="container">
     <h1>Time Table On Bench! :) Go Excel your Day <button onclick="addrow()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+   <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for timeslot.." title="Type in a time">
+   
    </h1>
     <table class="table" id="myTable">
     <thead>
       <tr>
-        <th data-card-title>Firstname</th>
-        <th data-card-action-links>URL</th>
-        <th data-card-footer>Email</th>
+        <th data-card-title>Time</th>
+        <th data-card-action-links>Task to be Done</th>
+        <th data-card-footer>Edit</th>
       </tr>
     </thead>
     <tbody id="tb">
-      <tr>
-        <td>John</td>
-        <td><a href="https://www.jqueryscript.net">https://www.jqueryscript.net</a></td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td><a href="https://www.jqueryscript.net">https://www.jqueryscript.net</a></td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td><a href="https://www.jqueryscript.net">https://www.jqueryscript.net</a></td>
-        <td>july@example.com</td>
-      </tr>
+    
+     <c:forEach items="${tts}" var="tt">
+     <tr>
+      <td>${tt.time}</td>
+     <td>${tt.task}</td>
+     </tr>
+     </c:forEach>
       
     </tbody>
   </table>
   </div>
 <script>
+function myFunction() {
+	  var input, filter, table, tr, td, i, txtValue;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("myTable");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[0];
+	    if (td) {
+	      txtValue = td.textContent || td.innerText;
+	      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+	}
   var i=0;
   
   function addrow(){
